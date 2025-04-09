@@ -57,7 +57,7 @@ const NuevoProductoPage: React.FC = () => {
         </div>
         <div className="mb-4 flex flex-col">
           <label htmlFor="image">Imagen:</label>
-          <Input type="url" id="image" name="image" disabled={pending} />
+          <Input type="url" id="image" name="image" required disabled={pending} />
         </div>
         <button
           type="submit"

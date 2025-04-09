@@ -10,6 +10,7 @@ interface SelectProps {
   required?: boolean;
   disabled?: boolean;
   filter?: boolean;
+  value?: string;
 }
 
 const Select = (props: SelectProps) => {
@@ -21,7 +22,8 @@ const Select = (props: SelectProps) => {
     name,
     required,
     disabled,
-    filter
+    filter,
+    value
   } = props;
   return (
     <div className="flex items-center justify-between flex-1 p-2 gap-3 border rounded-md shadow-md relative">
@@ -32,6 +34,7 @@ const Select = (props: SelectProps) => {
         name={name}
         required={required}
         disabled={disabled}
+        value={value}
       >
         <option value="">{defaultValue}</option>
         {values && values.map((value) => (

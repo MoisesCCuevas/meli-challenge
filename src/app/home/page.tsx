@@ -24,7 +24,13 @@ const Home = () => {
     <div className="flex flex-col items-center justify-center w-full h-full p-4">
       <div className="flex flex-col md:flex-row items-center justify-center w-2/3 p-2 gap-3 select-none">
         <SearchInput value={searchValue} onChange={v => filterProductsList(v, selectedCategory)} />
-        <Select filter defaultValue="Filtrar" values={categories} onChange={v => filterProductsList(searchValue, v)} />
+        <Select
+          filter
+          value={selectedCategory}
+          defaultValue="Filtrar"
+          values={categories}
+          onChange={v => filterProductsList(searchValue, v)}
+        />
       </div>
       {productsFiltered.length > 0 ? productsFiltered.map((product: Product) => (
         <Link key={product.title} href={`/products/${product.id}`} className="w-full md:w-3/5">

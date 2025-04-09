@@ -111,12 +111,10 @@ describe('ProductPage', () => {
       'flex-col',
       'items-center',
       'justify-center',
-      'gap-4',
       'w-full',
       'p-4',
       'md:w-1/2',
-      'mt-6',
-      'md:mt-0'
+      'select-none'
     );
 
     // Verificar sección de descripción
@@ -126,7 +124,7 @@ describe('ProductPage', () => {
       'flex-col',
       'items-center',
       'justify-center',
-      'gap-4',
+      'gap-6',
       'p-4',
       'w-full',
       'md:w-1/2'

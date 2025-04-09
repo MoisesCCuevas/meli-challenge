@@ -14,7 +14,7 @@ const Navbar = () => {
           <Link href="/">Products</Link>
         </li>
       </ul>
-      <button className="border font-bold py-2 px-4 rounded-md hover:text-white hover:border-white">
+      <button className="border font-bold shadow-md py-2 px-4 rounded-md hover:text-white hover:border-white">
         <Link href="/products/nuevo-producto" className="flex items-center justify-center md:gap-2">
           <PlusOutlined />
           <span className="hidden md:flex">Agregar Producto</span>

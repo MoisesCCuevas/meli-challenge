@@ -52,6 +52,6 @@ describe('Navbar Component', () => {
   it('aplica las clases correctas al botón de agregar', () => {
     render(<Navbar />);
     const button = screen.getByText('Agregar Producto').closest('button');
-    expect(button).toHaveClass('border', 'font-bold', 'py-2', 'px-4', 'rounded-md', 'hover:text-white', 'hover:border-white');
+    expect(button).toHaveClass('border', 'font-bold', 'shadow-md', 'py-2', 'px-4', 'rounded-md', 'hover:text-white', 'hover:border-white');
   });
 }); 

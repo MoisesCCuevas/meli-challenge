@@ -137,11 +137,17 @@ describe('ProductPage', () => {
 
     const backLink = screen.getByRole('link', { name: /volver/i });
     expect(backLink).toHaveClass(
-      'absolute',
-      'top-20',
-      'left-4',
-      'p-2',
-      'select-none'
+      'w-full',
+      'md:w-fit',
+      'relative',
+      'md:absolute',
+      'md:top-20',
+      'md:left-4',
+      'p-4',
+      'select-none',
+      'text-xl',
+      'font-semibold',
+      'hover:text-blue-500'
     );
   });
 }); 

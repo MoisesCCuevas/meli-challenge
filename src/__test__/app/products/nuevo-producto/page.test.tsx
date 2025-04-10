@@ -6,6 +6,7 @@ import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import NuevoProductoPage from '@/app/products/nuevo-producto/page';
 import useProducts from '@/hooks/useProducts';
+import AlertProvider from '@/components/CostumeAlertProvider';
 
 // Mock de módulos
 jest.mock('next/navigation', () => ({
@@ -32,6 +33,14 @@ jest.mock('react-dom', () => {
 const mockUseActionState = jest.fn();
 jest.spyOn(React, 'useActionState').mockImplementation(mockUseActionState);
 
+const renderWithAlertProvider = (component: React.ReactElement) => {
+  return render(
+    <AlertProvider>
+      {component}
+    </AlertProvider>
+  );
+};
+
 describe('NuevoProductoPage', () => {
   const mockCategories = ['electronics', 'clothing'];
   const mockAddProduct = jest.fn();
@@ -49,7 +58,7 @@ describe('NuevoProductoPage', () => {
   });
 
   it('debería renderizar el formulario correctamente', () => {
-    render(<NuevoProductoPage />);
+    renderWithAlertProvider(<NuevoProductoPage />);
 
     // Verificar título
     expect(screen.getByText('Crear Nuevo Producto')).toBeInTheDocument();
@@ -66,7 +75,7 @@ describe('NuevoProductoPage', () => {
   });
 
   it('debería mostrar las categorías en el select', () => {
-    render(<NuevoProductoPage />);
+    renderWithAlertProvider(<NuevoProductoPage />);
     
     const select = screen.getByLabelText(/categoría:/i);
     const options = within(select).getAllByRole('option');
@@ -81,7 +90,7 @@ describe('NuevoProductoPage', () => {
   });
 
   it('debería aplicar las clases correctas al contenedor principal', () => {
-    render(<NuevoProductoPage />);
+    renderWithAlertProvider(<NuevoProductoPage />);
 
     const container = screen.getByTestId('nuevo-producto-container');
     expect(container).toHaveClass(
@@ -96,7 +105,7 @@ describe('NuevoProductoPage', () => {
   });
 
   it('debería aplicar las clases correctas al formulario', () => {
-    render(<NuevoProductoPage />);
+    renderWithAlertProvider(<NuevoProductoPage />);
 
     const form = screen.getByTestId('nuevo-producto-form');
     expect(form).toHaveClass(
@@ -109,7 +118,7 @@ describe('NuevoProductoPage', () => {
   });
 
   it('debería validar los campos requeridos', () => {
-    render(<NuevoProductoPage />);
+    renderWithAlertProvider(<NuevoProductoPage />);
 
     // Verificar campos requeridos
     expect(screen.getByLabelText(/nombre del producto:/i)).toHaveAttribute('required');

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import StoreProvider from "@store/StoreProvider";
 import Navbar from "@/components/Navbar";
+import CostumeAlertProvider from "@/components/CostumeAlertProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -19,7 +20,9 @@ export default function RootLayout({
         <StoreProvider>
           <main className="flex flex-col items-center min-h-screen">
             <Navbar />
-            {children}
+            <CostumeAlertProvider>
+              {children}
+            </CostumeAlertProvider>
           </main>
         </StoreProvider>
       </body>

@@ -7,29 +7,39 @@ import Input from "@components/Input";
 import TextArea from "@components/TextArea";
 import { createProduct } from "./actions";
 import useProducts from "@hooks/useProducts";
+import useAlert from "@/hooks/useAlert";
 import { redirect } from "next/navigation";
 
 const NuevoProductoPage: React.FC = () => {
   const { categories, addProduct } = useProducts();
   const [state, action, pending] = useActionState(createProduct, { error: "", newProduct: null });
+  const { setAlert } = useAlert();
 
   // agrega el producto al estado global y redirige a la página de inicio
   useEffect(() => {
     if (state.newProduct) {
+      setAlert({
+        type: "success",
+        title: "Producto Creado",
+        children: <p>El producto fue creado correctamente</p>
+      });
       addProduct(state.newProduct);
       redirect("/home");
     }
   }, [state.newProduct]);
 
+  useEffect(() => {
+    if (state.error) {
+      setAlert({
+        type: "error",
+        title: "Error",
+        children: <p>{state.error}</p>,
+      });
+    }
+  }, [state.error]);
+
   return (
     <div className="flex flex-col items-center justify-center w-full h-full p-4" data-testid="nuevo-producto-container">
-      {
-        state.error && (
-          <div className="bg-red-500 text-white p-4 rounded-md mb-4">
-            {state.error}
-          </div>
-        )
-      }
       <h1 className="text-2xl font-bold mb-4">Crear Nuevo Producto</h1>
       <form action={action} className="w-full md:w-1/4 flex flex-col gap-4" data-testid="nuevo-producto-form">
         <div className="mb-4 flex flex-col">
